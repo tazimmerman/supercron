@@ -50,10 +50,9 @@ def parse_file(fp: TextIO) -> Dict[str, List[CronEvent]]:
     return events
 
 
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(__package__)
-    parser.add_argument('--file', type=argparse.FileType())
-    args = parser.parse_args()
-    events = parse_file(args.file)
-    cron = SuperCron(events)
-    cron.run_forever()
+parser = argparse.ArgumentParser(__package__)
+parser.add_argument('--file', type=argparse.FileType())
+args = parser.parse_args()
+events = parse_file(args.file)
+cron = SuperCron(events)
+cron.run_forever()
